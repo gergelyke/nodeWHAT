@@ -1,4 +1,5 @@
-var express = require('express'),
+var http = require('http'),
+    express = require('express'),
     fs = require('fs'),
     app = express();
 
@@ -13,4 +14,6 @@ app.get('/', function(req, res) {
     res.send('nodeWHAT!?');
 });
 
-app.listen(3000);
+http.createServer(app).listen(3000, function (err) {
+    if (err) return console.log(err);
+});
