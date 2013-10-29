@@ -1,16 +1,19 @@
-var express = require('express'),
+var http = require('http'),
+    express = require('express'),
     fs = require('fs'),
     app = express();
-
-app.use(function (req, res, next) {
-    console.log(req.method, req.url);
-    next();
-});
-
-app.use(express.static(__dirname + '/static'));
 
 app.get('/', function(req, res) {
     res.send('nodeWHAT!?');
 });
 
-app.listen(3000);
+app.get('/file', function (req, res) {
+    return fs.readFile(__dirname + '/static/pic.gif', function (err, data) {
+        if (err) return console.log(err);
+        return res.send(data);
+    })
+});
+
+http.createServer(app).listen(3000, function (err) {
+    if (err) return console.log(err);
+});
