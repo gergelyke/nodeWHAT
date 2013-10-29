@@ -3,7 +3,16 @@ var http = require('http'),
     app = express();
 
 app.get('/', function(req, res) {
-    res.send('nodeWHAT!?');
+    res.format({
+        html: function() {
+            res.send('hello budapest!')
+        },
+        json: function() {
+            res.json({
+                message: 'hello budapest'
+            });
+        }
+    });
 });
 
 http.createServer(app).listen(3000, function (err) {
