@@ -1,4 +1,5 @@
 var http = require('http'),
+    path = require('path'),
     express = require('express'),
     fs = require('fs'),
     app = express();
@@ -8,7 +9,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(express.static(__dirname + '/static'));
+app.use(express.static(path.join(__dirname, 'static')));
 
 app.get('/', function(req, res) {
     res.send('nodeWHAT!?');
