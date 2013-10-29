@@ -5,7 +5,7 @@ var http = require('http'),
 app.get('/', function(req, res) {
     res.format({
         html: function() {
-            res.send('hello budapest!')
+            res.send('hello budapest!');
         },
         json: function() {
             res.json({
