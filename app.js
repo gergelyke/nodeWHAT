@@ -1,16 +1,24 @@
-var express = require('express'),
+var http = require('http'),
+    path = require('path'),
+    express = require('express'),
     fs = require('fs'),
     app = express();
 
-app.use(function (req, res, next) {
-    console.log(req.method, req.url);
-    next();
-});
+app.set( "view engine", "html" );
+app.set( "views", path.join( __dirname, "/views"));
 
-app.use(express.static(__dirname + '/static'));
+app.engine('html', require('hogan-express'));
 
 app.get('/', function(req, res) {
-    res.send('nodeWHAT!?');
+    res.render('index');
 });
 
-app.listen(3000);
+app.get('/partials/:name', function(req, res) {
+    res.render('index', {
+        name: req.param('name')
+    });
+});
+
+http.createServer(app).listen(3000, function (err) {
+    if (err) return console.log(err);
+});
