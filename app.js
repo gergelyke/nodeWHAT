@@ -13,6 +13,7 @@ app.get('/file', function (req, res) {
         if (err) {
             return console.log(err);
         }
+        res.type('image/png');
         return res.send(data);
     });
 });
