@@ -16,5 +16,7 @@ app.get('/', function(req, res) {
 });
 
 http.createServer(app).listen(3000, function (err) {
-    if (err) return console.log(err);
+    if (err) {
+        return console.log(err);
+    }
 });
